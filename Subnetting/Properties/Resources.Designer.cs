@@ -59,5 +59,59 @@ namespace Subnetting.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hostaddress.
+        /// </summary>
+        internal static string strHostAddress {
+            get {
+                return ResourceManager.GetString("strHostAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP-Address.
+        /// </summary>
+        internal static string strIPAddress {
+            get {
+                return ResourceManager.GetString("strIPAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nets.
+        /// </summary>
+        internal static string strNets {
+            get {
+                return ResourceManager.GetString("strNets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nets used.
+        /// </summary>
+        internal static string strNetsUsed {
+            get {
+                return ResourceManager.GetString("strNetsUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Subnetmask.
+        /// </summary>
+        internal static string strNewSubnetmask {
+            get {
+                return ResourceManager.GetString("strNewSubnetmask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nets used instead of.
+        /// </summary>
+        internal static string strOtherNumberOfNetsUsed {
+            get {
+                return ResourceManager.GetString("strOtherNumberOfNetsUsed", resourceCulture);
+            }
+        }
     }
 }

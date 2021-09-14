@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,27 +112,85 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="strNets" xml:space="preserve">
-    <value>Nets</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 15</value>
   </data>
-  <data name="strIPAddress" xml:space="preserve">
-    <value>IP-Address</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Nets:</value>
   </data>
-  <data name="strNetsUsed" xml:space="preserve">
-    <value>Nets used</value>
+  <data name="lblIPAdress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 15</value>
   </data>
-  <data name="strOtherNumberOfNetsUsed" xml:space="preserve">
-    <value>Nets used instead of</value>
+  <data name="lblIPAdress.Text" xml:space="preserve">
+    <value>IP-Adress: 192.168.2.100/24 @ 16 Nets</value>
   </data>
-  <data name="strNewSubnetmask" xml:space="preserve">
-    <value>New Subnetmask</value>
+  <data name="btnCalculate.Text" xml:space="preserve">
+    <value>Calculate</value>
   </data>
-  <data name="strHostAddress" xml:space="preserve">
-    <value>Hostaddress</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 15</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Subnetzmask:</value>
+  </data>
+  <data name="NumberTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="netAdressTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Netaddress</value>
+  </data>
+  <data name="firstHostAdressTextBoxClumn.HeaderText" xml:space="preserve">
+    <value>1. Hostaddress</value>
+  </data>
+  <data name="lastHostAdressTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Last Hostaddress</value>
+  </data>
+  <data name="broadcastAdressTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Broadcast Address</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 15</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Additonal Information:</value>
+  </data>
+  <data name="lblNet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 15</value>
+  </data>
+  <data name="lblNet.Text" xml:space="preserve">
+    <value>16 Nets used</value>
+  </data>
+  <data name="lblHost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 15</value>
+  </data>
+  <data name="lblHost.Text" xml:space="preserve">
+    <value>Hostadress: 192.168.2.0</value>
+  </data>
+  <data name="lblNewSubnetMask.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 15</value>
+  </data>
+  <data name="lblNewSubnetMask.Text" xml:space="preserve">
+    <value>New Subnetmask: 255.255.255.224</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Subnetting</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>3</value>
   </data>
 </root>

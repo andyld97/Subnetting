@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Subnetting.Classes;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,14 +7,14 @@ namespace Subnetting
 {
     public partial class frmMain : Form
     {
-        private Classes.IPAdress currentIPAdress = null;
-        private Classes.Subnet currentSubnet = null;
+        private IPAdress currentIPAdress = null;
+        private Subnet currentSubnet = null;
 
         public frmMain()
         {
             InitializeComponent();
-            this.currentIPAdress = new Classes.IPAdress(192, 168, 2, 100, 8);
-            this.currentSubnet = new Classes.Subnet(this.currentIPAdress, 16);
+            this.currentIPAdress = new IPAdress(192, 168, 2, 100, 8);
+            this.currentSubnet = new Subnet(currentIPAdress, 16);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -24,28 +25,28 @@ namespace Subnetting
 
         private void fOct_ValueChanged(object sender, EventArgs e)
         {
-            this.currentIPAdress = new Classes.IPAdress((int)fOct.Value, (int)sOct.Value, (int)tOct.Value, (int)foOct.Value, (int)this.subMask.Value);
-            this.lblIPAdress.Text = "IP-Adresse: " + this.currentIPAdress.ToString() + "/" + this.subMask.Value + " @ " + (int)this.nets.Value + " Netze";
+            this.currentIPAdress = new IPAdress((int)fOct.Value, (int)sOct.Value, (int)tOct.Value, (int)foOct.Value, (int)this.subMask.Value);
+            this.lblIPAdress.Text = $"{Properties.Resources.strIPAddress}: {currentIPAdress}/{(int)subMask.Value} @ {(int)nets.Value} {Properties.Resources.strNets}";
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            this.currentSubnet = new Classes.Subnet(this.currentIPAdress, (int)this.nets.Value);
-            double used = Math.Pow(2, Classes.IPAdress.GetBitsFromNet((int)this.nets.Value));
+            this.currentSubnet = new Subnet(this.currentIPAdress, (int)this.nets.Value);
+            double used = Math.Pow(2, IPAdress.GetBitsFromNet((int)this.nets.Value));
 
             if ((int)used == (int)this.nets.Value)
             {
-                lblNet.Text = (int)this.nets.Value + " Netze wurden verwendet";
+                lblNet.Text = $"{(int)this.nets.Value} {Properties.Resources.strNetsUsed}";
                 lblNet.ForeColor = Color.Green;
             }
             else
             {
-                lblNet.Text = used + " Netze wurden verwendet, statt " + this.nets.Value;
+                lblNet.Text = $"{used} {Properties.Resources.strOtherNumberOfNetsUsed} {(int)nets.Value}";
                 lblNet.ForeColor = Color.Red;
             }
 
-            this.lblHost.Text = "Hostadresse: " + this.currentSubnet.NetworkAdress;
-            this.lblNewSubnetMask.Text = "Neue Subnetzmaske: " + this.currentSubnet.SubnetMask;
+            this.lblHost.Text = $"{Properties.Resources.strHostAddress}: {currentSubnet.NetworkAdress}";
+            this.lblNewSubnetMask.Text = $"{Properties.Resources.strNewSubnetmask}: {currentSubnet.SubnetMask}";
 
             this.dgwData.Rows.Clear();
             dgwData.Rows.Add(this.currentSubnet.BroadcastAdress.Length);
