@@ -1,8 +1,0 @@
-F:\Andy's Dokumente\Subnetting\Subnetting\bin\Debug\Subnetting.exe
-F:\Andy's Dokumente\Subnetting\Subnetting\bin\Debug\Subnetting.pdb
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.csprojResolveAssemblyReference.cache
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.frmMain.resources
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.Properties.Resources.resources
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.csproj.GenerateResource.Cache
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.exe
-F:\Andy's Dokumente\Subnetting\Subnetting\obj\Debug\Subnetting.pdb
