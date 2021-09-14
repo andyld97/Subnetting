@@ -1,77 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Subnetting.Classes
+﻿namespace Subnetting.Classes
 {
     public class Subnet
     {
+        #region Private Members
         public readonly IPAdress Adress;
         private IPAdress subnetMask, networkAdress;
         private IPAdress[] hostAdresses, firstHostAdresses, lastHostAdresses, broadcastAdresses;
         private int net = 0;
+        #endregion
 
+        #region Public Properties
         public int Net
         {
-            get
-            {
-                return this.net;
-            }
+            get => net;
             set
             {
                 this.net = value;
-                this.calculate();
+                this.Calculate();
             }
         }
 
-        public IPAdress SubnetMask
-        {
-            get
-            {
-                return this.subnetMask;
-            }
-        }
+        public IPAdress SubnetMask => subnetMask;
 
-        public IPAdress NetworkAdress
-        {
-            get
-            {
-                return this.networkAdress;
-            }
-        }
+        public IPAdress NetworkAdress => networkAdress;
 
-        public IPAdress[] FirstHostAdresses
-        {
-            get
-            {
-                return this.firstHostAdresses;
-            }
-        }
+        public IPAdress[] FirstHostAdresses => firstHostAdresses;
 
-        public IPAdress[] HostAdresses
-        {
-            get
-            {
-                return this.hostAdresses;
-            }
-        }
+        public IPAdress[] HostAdresses => hostAdresses;
 
-        public IPAdress[] LastHostAdress
-        {
-            get
-            {
-                return this.lastHostAdresses;
-            }
-        }
+        public IPAdress[] LastHostAdress => lastHostAdresses;
 
-        public IPAdress[] BroadcastAdress
-        {
-            get
-            {
-                return this.broadcastAdresses;
-            }
-        }
+        public IPAdress[] BroadcastAdress => broadcastAdresses;
+
+        #endregion
 
         public Subnet(IPAdress Adress, int net)
         {
@@ -79,7 +40,7 @@ namespace Subnetting.Classes
             this.Net = net;
         }
 
-        private void calculate()
+        private void Calculate()
         {
             if (Adress != null)
             {

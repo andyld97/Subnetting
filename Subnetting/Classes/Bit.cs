@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Subnetting.Classes
 {
-
     public class Bit
     {
         private int value;
 
         public int Value
         {
-            get
-            {
-                return value;
-            }
+            get => value;
             set
             {
                 if (value == 1 || value == 0)

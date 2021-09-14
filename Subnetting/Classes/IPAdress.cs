@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Subnetting.Classes
 {
     public class IPAdress
     {
-        private int mask = 0;
+        #region Private Members
+        private readonly int mask = 0;
 
         // First oct:
         private int _fOct = 0;
@@ -25,42 +25,36 @@ namespace Subnetting.Classes
         private int _foOct = 0;
         private Bit[] foOct = new Bit[8];
 
+        #endregion
+
+        #region Public Properties
         public int FOct
         {
-            get
-            {
-                return _fOct;
-            }
+            get => _fOct;
             set
             {
                 _fOct = value;
-                this.fOct = Bit.FromInt(value);
+                fOct = Bit.FromInt(value);
             }
         }
 
         public int SOct
         {
-            get
-            {
-                return _sOct;
-            }
+            get =>  _sOct;
             set
             {
                 _sOct = value;
-                this.sOct = Bit.FromInt(value);
+                sOct = Bit.FromInt(value);
             }
         }
 
         public int TOct
         {
-            get
-            {
-                return _tOct;
-            }
+            get => _tOct;
             set
             {
                 _tOct = value;
-                this.tOct = Bit.FromInt(value);
+                tOct = Bit.FromInt(value);
             }
         }
 
@@ -73,7 +67,7 @@ namespace Subnetting.Classes
             set
             {
                 _foOct = value;
-                this.foOct = Bit.FromInt(value);
+                foOct = Bit.FromInt(value);
             }
         }
 
@@ -84,31 +78,28 @@ namespace Subnetting.Classes
                 Bit[] mBit = new Bit[32];
                 int counter = 0;
 
-                for (int i = 0; i <= this.getBitArraysAsList().Count() - 1; i++)
-                    for (int s = 0; s <= this.getBitArraysAsList()[i].Length - 1; s++)
-                        mBit[counter++] = this.getBitArraysAsList()[i][s];
+                for (int i = 0; i <= this.GetBitArraysAsList().Count() - 1; i++)
+                    for (int s = 0; s <= this.GetBitArraysAsList()[i].Length - 1; s++)
+                        mBit[counter++] = this.GetBitArraysAsList()[i][s];
 
                 return mBit;
             }
         }
 
+        #endregion
+
         public IPAdress(int f, int s, int t, int fo, int mask)
         {
-            this.FOct = f;
-            this.SOct = s;
-            this.TOct = t;
-            this.FoOct = fo;
+            FOct = f;
+            SOct = s;
+            TOct = t;
+            FoOct = fo;
             this.mask = mask;
         }
 
-        public List<Bit[]> getBitArraysAsList()
+        public List<Bit[]> GetBitArraysAsList()
         {
-            List<Bit[]> bitArrays = new List<Bit[]>();
-            bitArrays.Add(fOct);
-            bitArrays.Add(sOct);
-            bitArrays.Add(tOct);
-            bitArrays.Add(foOct);
-            return bitArrays;
+           return new List<Bit[]> { fOct, sOct, tOct, foOct };
         }
 
         public IPAdress BuildNetworkAdress()
@@ -117,7 +108,7 @@ namespace Subnetting.Classes
             Bit[] sub = new Bit[32];
 
             int counter = 0;
-            foreach (Bit[] arr in this.getBitArraysAsList())
+            foreach (Bit[] arr in this.GetBitArraysAsList())
                 for (int i = 0; i <= arr.Length - 1; i++)
                     ip[counter++] = arr[i];
 
@@ -137,7 +128,7 @@ namespace Subnetting.Classes
             IPAdress currentAdress = new IPAdress(10, 10, 10, 10, mask);
             int currentOct = 0;
             int otherCounter = 0;
-            var lst = currentAdress.getBitArraysAsList();
+            var lst = currentAdress.GetBitArraysAsList();
 
             for (int i = 1; i <= value.Length; i++)
             {
@@ -186,7 +177,7 @@ namespace Subnetting.Classes
             return Convert.ToInt32(newItem);
         }
 
-        private Bit[] linkAnd(Bit[] ip, Bit[] sub)
+        private Bit[] LinkWithAndGatter(Bit[] ip, Bit[] sub)
         {
             Bit[] finalIP = new Bit[32];
 
@@ -209,7 +200,7 @@ namespace Subnetting.Classes
             for (int i = 0; i <= 32 - 1; i++)
                 subNet[i] = (i <= currentAdress.mask - 1 ? new Bit(1) : new Bit(0));
 
-            Bit[] finalIP = linkAnd(ip, subNet);
+            Bit[] finalIP = LinkWithAndGatter(ip, subNet);
 
             return this.BuildIPAdressFromBit(finalIP, currentAdress.mask);
         }
@@ -310,8 +301,7 @@ namespace Subnetting.Classes
 
         public override string ToString()
         {
-            return FOct + "." + SOct + "." + TOct + "." + FoOct;
+            return $"{FOct}.{SOct}.{TOct}.{FoOct}";
         }
-
     }
 }
